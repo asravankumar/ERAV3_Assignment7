@@ -1,7 +1,7 @@
 # ERAV3_Assignment7: model-1
 
 
-### Model Architecture
+### Model Summary
 ```
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
@@ -33,6 +33,25 @@ Forward/backward pass size (MB): 0.47
 Params size (MB): 0.04
 Estimated Total Size (MB): 0.52
 ----------------------------------------------------------------
+```
+
+### Model Input Sizes, Output Sizes and Receptive Field Computation
+```
+
+| Layer            | Input Size      | Output Size     | Input Channels | Output Channels | Kernel Size | Stride | Padding | Receptive Field |
+|-------------------|-----------------|-----------------|----------------|-----------------|-------------|--------|---------|----------------|
+| Input            | 28x28           | 28x28           | 1              | 1               | -           | -      | -       | 1              |
+| Conv1 + ReLU     | 28x28           | 28x28           | 1              | 10              | 3x3         | 1      | 1       | 3              |
+| Conv2 + ReLU     | 28x28           | 28x28           | 10             | 16              | 3x3         | 1      | 1       | 5              |
+| MaxPool (2x2)    | 28x28           | 14x14           | 16             | 16              | 2x2         | 2      | 0       | 6              |
+| 1x1 Conv         | 14x14           | 14x14           | 16             | 10              | 1x1         | 1      | 0       | 6              |
+| Conv3 + ReLU     | 14x14           | 14x14           | 10             | 16              | 3x3         | 1      | 1       | 10             |
+| Conv4 + ReLU     | 14x14           | 14x14           | 16             | 16              | 3x3         | 1      | 1       | 14             |
+| MaxPool (2x2)    | 14x14           | 7x7             | 16             | 16              | 2x2         | 2      | 0       | 16             |
+| 1x1 Conv         | 7x7             | 7x7             | 16             | 10              | 1x1         | 1      | 0       | 16             |
+| Conv5 + ReLU     | 7x7             | 7x7             | 10             | 16              | 3x3         | 1      | 1       | 24             |
+| Conv6 + ReLU     | 7x7             | 5x5             | 16             | 10              | 3x3         | 1      | 0       | 32             |
+| Fully Connected  | 10x5x5          | 10              | -              | 10              | -           | -      | -       | -              |
 ```
 
 
