@@ -9,7 +9,7 @@ import random
 from tqdm import tqdm
 import torch.nn.functional as F
 from torchsummary import summary
-from torch.optim.lr_scheduler import ReduceLROnPlateau
+from torch.optim.lr_scheduler import ReduceLROnPlateau,StepLR
 
 
 torch.manual_seed(1)
@@ -107,8 +107,8 @@ summary(model, input_size=(1, 28, 28))
 
 model =  Net().to(device)
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
-#scheduler = StepLR(optimizer, step_size=6, gamma=0.1)
-scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=1, verbose=True)
+scheduler = StepLR(optimizer, step_size=8, gamma=0.1)
+#scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=1, verbose=True)
 
 
 EPOCHS = 20
@@ -119,5 +119,5 @@ for epoch in range(EPOCHS):
     print(f"Learning Rate = {current_lr:.6f}")
     train(model, device, train_loader, optimizer, epoch)
     test_loss = test(model, device, test_loader)
-    scheduler.step(test_loss)
+    scheduler.step()#test_loss)
     print("--------------------------------------------")
