@@ -122,7 +122,7 @@ print("device: ", device)
 print("---------------------------")
 model =  Net().to(device)
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
-scheduler = StepLR(optimizer, step_size=10, gamma=0.1)
+scheduler = StepLR(optimizer, step_size=6, gamma=0.1)
 #scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=1, verbose=True)
 #scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=1, verbose=True, min_lr=1e-6)
 

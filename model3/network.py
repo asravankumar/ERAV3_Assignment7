@@ -7,66 +7,63 @@ class Net(nn.Module):
     def __init__(self):
         dropout_rate = 0.01
         super(Net, self).__init__()
+
         # Input image size : 28x28
 
-        # Convolution Layer 1 - Output Size - 26
+        # Convolution Layer 1
         self.conv1 = nn.Sequential(
-            nn.Conv2d(1, 10, kernel_size=3, padding=0, bias=False), # Input Channels - 1, Output Channels - 12
-            nn.ReLU(),
-            nn.BatchNorm2d(10),
-            nn.Dropout(dropout_rate)
-        )
-        
-        # Convolution Layer 2 - Output Size - 24
-        self.conv2 = nn.Sequential(
-            nn.Conv2d(10, 16, kernel_size=3, padding=0, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(16),
-            nn.Dropout(dropout_rate)
-        )
-        
-        # Convolution Layer 3 - Output Size - 22
-        self.conv3 = nn.Sequential(
-            nn.Conv2d(16, 8, kernel_size=3, padding=0, bias=False),
+            nn.Conv2d(1, 8, kernel_size=3, padding=0, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_rate)
-        )
-
-        # Transition Layer 1 - MaxPool and 1x1 conv - Output Size - 11
-        self.transition1 = nn.Sequential(
-            nn.MaxPool2d(2, 2),
-        )
-
-        # Convolution Layer 4 - Output Size - 9
-        self.conv4 = nn.Sequential(
+        ) # Output Size - 26, Receptive Field - 3
+        
+        # Convolution Layer 2
+        self.conv2 = nn.Sequential(
             nn.Conv2d(8, 16, kernel_size=3, padding=0, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(16),
             nn.Dropout(dropout_rate)
-        )
-
-        # Transition Layer 2 - MaxPool and 1x1 conv - Output Size - 4
-        #self.transition2 = nn.Sequential(
-        #    nn.MaxPool2d(2, 2),
-        #    nn.Conv2d(16, 10, kernel_size=1, padding=0, base=False),
-        #)
+        ) # Output Size - 24, Receptive Field - 5
         
-        # Convolution Layer 5 - Output Size - 7
-        self.conv5 = nn.Sequential(
-            nn.Conv2d(16, 16, kernel_size=3, padding=0, bias=False),
+        # Transition Layer 1 - MaxPool and 1x1 conv
+        self.transition1 = nn.Sequential(
+            nn.MaxPool2d(2, 2),
+            nn.Conv2d(16, 8, kernel_size=1, padding=0, bias=False),
+        ) # Output Size - 12, Receptive Field - 6
+
+        # Convolution Layer 4
+        self.conv3 = nn.Sequential(
+            nn.Conv2d(8, 16, kernel_size=3, padding=0, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(16),
             nn.Dropout(dropout_rate)
-        )
+        ) # Output Size - 10, Receptive Field -10 
 
-        # Convolution Layer 6 - Output Size - 5
+        # Convolution Layer 4
+        self.conv4 = nn.Sequential(
+            nn.Conv2d(16, 12, kernel_size=3, padding=0, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(12),
+            nn.Dropout(dropout_rate)
+        ) # Output Size - 8, Receptive Field - 14
+
+        
+        # Convolution Layer 5
+        self.conv5 = nn.Sequential(
+            nn.Conv2d(12, 16, kernel_size=3, padding=0, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(16),
+            nn.Dropout(dropout_rate)
+        ) # Output Size - 6, Receptive Field - 18
+
+        # Convolution Layer 6
         self.conv6 = nn.Sequential(
             nn.Conv2d(16, 10, kernel_size=3, padding=0, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(10),
             nn.Dropout(dropout_rate)
-        )
+        ) # Output Size - 4, Receptive Field - 22
         
         self.gap = nn.AdaptiveAvgPool2d(1)
 
@@ -77,11 +74,10 @@ class Net(nn.Module):
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
-        x = self.conv3(x)
         x = self.transition1(x)
 
+        x = self.conv3(x)
         x = self.conv4(x)
-        #x = self.transition2(x)
 
         x = self.conv5(x)
         x = self.conv6(x)
