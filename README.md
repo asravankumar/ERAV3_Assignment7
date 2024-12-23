@@ -1,5 +1,7 @@
 # ERAV3_Assignment7
 
+This repository contains the development and analysis of lightweight convolutional neural network models trained on the MNIST dataset. The goal was to achieve high test accuracy while keeping the model parameters under control and addressing issues like overfitting. The Model-1 served as the foundational step, which was further refined in Model-2 to address overfitting, and ultimately evolved into Model-3, the final optimized version. Later, the model was trained on an EC2 g4dn.xlarge instance to explore real-time training using GPU, which yielded similar accuracies. Detailed logs, receptive field calculations, and network declarations for each model are provided to document the iterative improvements. The final model achieved a consistent test accuracy of >99.4% within 15 epochs.
+
 ## Model - 1
 
 ### Target:
@@ -18,7 +20,8 @@
   2. Model is definitely overfitting after epoch 6 when the training accuracy started showing higher accuracy than testing accuracy. and the gap widenened in later epochs.
   3. Need to use regularization to overcome overfitting and use batch normalization to converge faster and improve model efficiency.
 
-Please go to [Model-1](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1) for a detailed information, receptive field calculations and training logs.
+Please visit [Model-1](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1) for a detailed information, receptive field calculations and training logs.
+Please visit [Model-1 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1/network.py) for the network declaration.
 
 ## Model - 2
 ### Target:
@@ -36,6 +39,7 @@ Please go to [Model-1](https://github.com/asravankumar/ERAV3_Assignment7/tree/ma
   4. Perhaps, we should add image augmentation techniques to improve the model and also a better scheduler to achieve the best plateau during training.
 
 Please go to [Model-2](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2) for a detailed information, receptive field calculations and training logs.
+Please visit [Model-2 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2/network.py) for the network declaration.
 
 ## Model - 3 (The Final One)
 ### Target:
@@ -55,3 +59,4 @@ Please go to [Model-2](https://github.com/asravankumar/ERAV3_Assignment7/tree/ma
   5. Training the same model in GPU yielded slightly better results after epoch 10.
 
 Please go to [Model-3](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3) for a detailed information, receptive field calculations and training logs.
+Please visit [Model-3 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3/network.py) for the network declaration.
