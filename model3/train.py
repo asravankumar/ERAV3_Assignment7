@@ -16,6 +16,12 @@ torch.manual_seed(1)
 batch_size = 128 #256
 
 use_cuda = torch.cuda.is_available()
+if use_cuda:
+    torch.cuda.manual_seed(1)
+    torch.cuda.manual_seed_all(1)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
 device = torch.device("cuda" if use_cuda else "cpu")
 model = Net().to(device)
 kwargs = {'num_workers': 1, 'pin_memory': True} if use_cuda else {}
@@ -23,6 +29,13 @@ train_loader = torch.utils.data.DataLoader(
     datasets.MNIST('../data', train=True, download=True,
                     transform=transforms.Compose([
                         transforms.RandomRotation((-7.0, 7.0), fill=(1,)),
+                        transforms.RandomAffine(
+                         degrees=7,
+                         translate=(0.1, 0.1),
+                         scale=(0.9, 1.1),
+                         fill=0
+                         ),
+
                         transforms.ToTensor(),
                         transforms.Normalize((0.1307,), (0.3081,))
                     ])),
@@ -104,11 +117,14 @@ def test(model, device, test_loader):
 
 summary(model, input_size=(1, 28, 28))
 
-
+print("---------------------------")
+print("device: ", device)
+print("---------------------------")
 model =  Net().to(device)
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
-scheduler = StepLR(optimizer, step_size=8, gamma=0.1)
+scheduler = StepLR(optimizer, step_size=10, gamma=0.1)
 #scheduler = ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=1, verbose=True)
+#scheduler = ReduceLROnPlateau(optimizer, mode='max', factor=0.1, patience=1, verbose=True, min_lr=1e-6)
 
 
 EPOCHS = 20
@@ -119,5 +135,5 @@ for epoch in range(EPOCHS):
     print(f"Learning Rate = {current_lr:.6f}")
     train(model, device, train_loader, optimizer, epoch)
     test_loss = test(model, device, test_loader)
-    scheduler.step()#test_loss)
+    scheduler.step() #test_loss)
     print("--------------------------------------------")

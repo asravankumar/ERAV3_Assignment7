@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 class Net(nn.Module):
     def __init__(self):
-        dropout_rate = 0.07
+        dropout_rate = 0.01
         super(Net, self).__init__()
         # Input image size : 28x28
 
