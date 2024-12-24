@@ -60,3 +60,11 @@ This repository contains the development and analysis of lightweight convolution
 
 - Please go to [Model-3](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3) for a detailed information, receptive field calculations and training logs.
 - Please visit [Model-3 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3/network.py) for the network declaration.
+
+## EC2 Training Logs ScreenShots
+The network was trained in an aws ec2 instance of g4dn.xlarge ec2 type.
+
+![Alt text](https://github.com/asravankumar/ERAV3_Assignment7/blob/main/images/ec2_training.png?raw=true)
+
+![Alt text](https://github.com/asravankumar/ERAV3_Assignment7/blob/main/images/ec2_nvidia_smi.png?raw=true)
+
