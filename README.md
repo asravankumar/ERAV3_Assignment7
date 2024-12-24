@@ -38,8 +38,8 @@ Please visit [Model-1 Network](https://github.com/asravankumar/ERAV3_Assignment7
   3. Earlier, maxpool was used in two layers but reducing it to one increased both the training and test accuracies by 1% and could easily reach ~99.2% by doing so.
   4. Perhaps, we should add image augmentation techniques to improve the model and also a better scheduler to achieve the best plateau during training.
 
-Please go to [Model-2](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2) for a detailed information, receptive field calculations and training logs.
-Please visit [Model-2 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2/network.py) for the network declaration.
+- Please go to [Model-2](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2) for a detailed information, receptive field calculations and training logs.
+- Please visit [Model-2 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model2/network.py) for the network declaration.
 
 ## Model - 3 (The Final One)
 ### Target:
@@ -58,5 +58,5 @@ Please visit [Model-2 Network](https://github.com/asravankumar/ERAV3_Assignment7
   4. Then reducing the dropout to 0.01 has improved the training and test accuracy to a large extent. Perhaps, a larger droput in a small dataset like MNIST is loosing out crucial information.
   5. Training the same model in GPU yielded slightly better results after epoch 10.
 
-Please go to [Model-3](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3) for a detailed information, receptive field calculations and training logs.
-Please visit [Model-3 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3/network.py) for the network declaration.
+- Please go to [Model-3](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3) for a detailed information, receptive field calculations and training logs.
+- Please visit [Model-3 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model3/network.py) for the network declaration.

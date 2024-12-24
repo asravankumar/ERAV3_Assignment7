@@ -9,43 +9,43 @@ class Net(nn.Module):
         super(Net, self).__init__()
         # Input image size : 28x28
 
-        # Convolution Layer 1 - Output Size - 26
+        # Convolution Layer 1
         self.conv1 = nn.Sequential(
             nn.Conv2d(1, 10, kernel_size=3, padding=0, bias=False), # Input Channels - 1, Output Channels - 12
             nn.BatchNorm2d(10),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        ) # Output Size - 26, Receptive Field - 3
         
-        # Convolution Layer 2 - Output Size - 24
+        # Convolution Layer 2
         self.conv2 = nn.Sequential(
             nn.Conv2d(10, 20, kernel_size=3, padding=0, bias=False),
             nn.BatchNorm2d(20),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        )# Output Size - 24, Receptive Field - 5
         
-        # Convolution Layer 3 - Output Size - 22
+        # Convolution Layer 3
         self.conv3 = nn.Sequential(
             nn.Conv2d(20, 12, kernel_size=3, padding=0, bias=False),
             nn.BatchNorm2d(12),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        ) # Output Size - 22, Receptive Field - 7
 
-        # Transition Layer 1 - MaxPool and 1x1 conv - Output Size - 11
+        # Transition Layer 1 - MaxPool and 1x1 conv
         self.transition1 = nn.Sequential(
             nn.Conv2d(12, 10, kernel_size=1, padding=0, bias=False),
             nn.MaxPool2d(2, 2),
-        )
+        ) # Output Size - 11, Receptive Field - 8
 
-        # Convolution Layer 4 - Output Size - 9
+        # Convolution Layer 4
         self.conv4 = nn.Sequential(
             nn.Conv2d(10, 12, kernel_size=3, padding=0, bias=False),
             nn.BatchNorm2d(12),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        ) # Output Size - 9, Receptive Field - 12 
 
         # Transition Layer 2 - MaxPool and 1x1 conv - Output Size - 4
         #self.transition2 = nn.Sequential(
@@ -53,21 +53,21 @@ class Net(nn.Module):
         #    nn.Conv2d(16, 10, kernel_size=1, padding=0, base=False),
         #)
         
-        # Convolution Layer 5 - Output Size - 7
+        # Convolution Layer 5
         self.conv5 = nn.Sequential(
             nn.Conv2d(12, 12, kernel_size=3, padding=0, bias=False),
             nn.BatchNorm2d(12),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        ) # Output Size - 7, Receptive Field - 16
 
-        # Convolution Layer 6 - Output Size - 5
+        # Convolution Layer 6
         self.conv6 = nn.Sequential(
             nn.Conv2d(12, 10, kernel_size=3, padding=0, bias=False),
             nn.BatchNorm2d(10),
             nn.Dropout(dropout_rate),
             nn.ReLU()
-        )
+        ) # Output Size - 5, Receptive Field - 20
         
         self.gap = nn.AdaptiveAvgPool2d(1)
 
