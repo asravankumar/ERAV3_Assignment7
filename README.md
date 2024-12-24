@@ -20,8 +20,8 @@ This repository contains the development and analysis of lightweight convolution
   2. Model is definitely overfitting after epoch 6 when the training accuracy started showing higher accuracy than testing accuracy. and the gap widenened in later epochs.
   3. Need to use regularization to overcome overfitting and use batch normalization to converge faster and improve model efficiency.
 
-Please visit [Model-1](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1) for a detailed information, receptive field calculations and training logs.
-Please visit [Model-1 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1/network.py) for the network declaration.
+- Please visit [Model-1](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1) for a detailed information, receptive field calculations and training logs.
+- Please visit [Model-1 Network](https://github.com/asravankumar/ERAV3_Assignment7/tree/main/model1/network.py) for the network declaration.
 
 ## Model - 2
 ### Target:
